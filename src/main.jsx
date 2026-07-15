@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './hooks/useAuth'
 import ErrorBoundary from './components/ErrorBoundary'
-import { Analytics } from '@vercel/analytics/next'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import './index.css'
 import App from './App.jsx'
 
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
         <AuthProvider>
           <App />
           <Analytics />
+          <SpeedInsights />
         </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>
