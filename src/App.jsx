@@ -15,10 +15,13 @@ import LivePage from './pages/LivePage'
 import ReelsPage from './pages/ReelsPage'
 import HomePage from './pages/HomePage'
 import SettingsPage from './pages/SettingsPage'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <Analytics />
+      <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -63,5 +66,6 @@ export default function App() {
       <Route path="/reels" element={<ProtectedRoute><ReelsPage /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
     </Routes>
+    </>
   )
 }
