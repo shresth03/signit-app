@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PageShell from '../../components/PageShell'
-import { useLiveStreams, useStreamViewers } from '../../hooks/useLiveStreams'
-import { useAuth } from '../../hooks/useAuth'
+import { useLiveStreams, useStreamViewers } from '../../hooks/feed/useLiveStreams'
+import { useAuth } from '../../hooks/core/useAuth'
 import { BadgeCheck, PenLine, Play, Radio, Inbox } from 'lucide-react'
 import { supabase } from '../../api/supabase'
 

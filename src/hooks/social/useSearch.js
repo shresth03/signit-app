@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { supabase } from '../api/supabase'
+import { supabase } from '../../api/supabase'
 
 function dateFilterCutoff(filter) {
   if (filter === '1h')  return new Date(Date.now() - 60 * 60 * 1000).toISOString()

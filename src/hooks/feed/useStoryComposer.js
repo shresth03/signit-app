@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { supabase } from '../api/supabase'
-import { useAuth } from './useAuth'
-import { ingest } from '../lib/ingestion/index.js'
+import { supabase } from '../../api/supabase'
+import { useAuth } from '../core/useAuth'
+import { ingest } from '../../lib/ingestion/index.js'
 
 const PROXY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/anthropic-proxy`
 

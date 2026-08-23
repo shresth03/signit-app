@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../api/supabase'
+import { supabase } from '../../api/supabase'
 
 // Score each news post on a 0–100 scale then average across all posts.
 // New OSINT user with no posts = 80.

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
-import { usePosts } from '../../hooks/usePosts'
-import { useAuth } from '../../hooks/useAuth'
+import { usePosts } from '../../hooks/feed/usePosts'
+import { useAuth } from '../../hooks/core/useAuth'
 import { supabase } from '../../api/supabase'
 import { useNavigate } from 'react-router-dom'
-import { useNotifications } from '../../hooks/useNotifications'
+import { useNotifications } from '../../hooks/social/useNotifications'
 import { useLocation } from 'react-router-dom'
-import { useIsMobile } from '../../hooks/useIsMobile'
+import { useIsMobile } from '../../hooks/core/useIsMobile'
 import { Heart, MessageCircle, Repeat2, Bookmark, Inbox, ChevronDown, ChevronUp, BadgeCheck } from 'lucide-react'
 
 function timeAgo(dateStr) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../api/supabase'
-import { useAuth } from './useAuth'
+import { supabase } from '../../api/supabase'
+import { useAuth } from '../core/useAuth'
 
 export function usePosts() {
   const { user } = useAuth()

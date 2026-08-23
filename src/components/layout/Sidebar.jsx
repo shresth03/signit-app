@@ -1,9 +1,9 @@
-import { useAuth } from '../../hooks/useAuth'
+import { useAuth } from '../../hooks/core/useAuth'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { supabase } from '../../api/supabase'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { useTheme } from '../../hooks/useTheme'
-import { useNotifications } from '../../hooks/useNotifications'
+import { useTheme } from '../../hooks/core/useTheme'
+import { useNotifications } from '../../hooks/social/useNotifications'
 import ThemeRipple from '../ThemeRipple'
 import NotificationPanel from '../NotificationPanel'
 import {

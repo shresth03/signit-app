@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useAuth } from '../../hooks/useAuth'
-import { useUser } from '../../hooks/useUser'
+import { useAuth } from '../../hooks/core/useAuth'
+import { useUser } from '../../hooks/account/useUser'
 import { supabase } from '../../api/supabase'
 import { useNavigate } from 'react-router-dom'
 import { MessageSquareDashed, Loader2, Send } from 'lucide-react'

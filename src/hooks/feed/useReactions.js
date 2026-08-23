@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../api/supabase'
-import { useAuth } from './useAuth'
+import { supabase } from '../../api/supabase'
+import { useAuth } from '../core/useAuth'
 import { ShieldCheck, Star, AlertTriangle, Zap } from 'lucide-react'
 
 export const REACTION_TYPES = [
