@@ -1,6 +1,6 @@
 import { useAuth } from '../../hooks/core/useAuth'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { supabase } from '../../api/supabase'
+import { identityDb } from '../../api/supabase'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useTheme } from '../../hooks/core/useTheme'
 import { useNotifications } from '../../hooks/social/useNotifications'
@@ -52,7 +52,7 @@ export default function Sidebar({ setShowApply }) {
 
   useEffect(() => {
     if (!user?.id) return
-    supabase.from('users').select('role, username').eq('id', user.id).single()
+    identityDb.from('profiles').select('role, username').eq('id', user.id).single()
       .then(({ data }) => {
         if (data) { setUserRole(data.role || 'public'); setUsername(data.username || '') }
       })

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useUser } from '../../hooks/account/useUser'
 import { useAuth } from '../../hooks/core/useAuth'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '../../api/supabase'
+import { contentDb } from '../../api/supabase'
 import { BadgeCheck, ShieldAlert, CircleDot, Bookmark, Check, LogOut } from 'lucide-react'
 import { usePosts } from '../../hooks/feed/usePosts'
 import PageShell from '../../components/PageShell'
@@ -22,7 +22,7 @@ export default function ProfilePage() {
   useEffect(() => {
     if (profile) {
       setUsername(profile.username || '')
-      supabase
+      contentDb
         .from('posts')
         .select('id', { count: 'exact' })
         .eq('author_id', user.id)

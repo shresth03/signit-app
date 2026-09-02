@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { supabase } from '../../api/supabase'
+import { contentDb, identityDb } from '../../api/supabase'
 
 export function useStories() {
   const [stories, setStories] = useState([])
@@ -11,7 +11,10 @@ export function useStories() {
   }, [])
 
   async function fetchStories() {
-    const { data, error } = await supabase
+    // story_sources/posts are both in `content`, so that embed works — but
+    // posts.author_id points into `identity`, a separate schema PostgREST
+    // can't traverse in one query, so profiles are fetched and merged after.
+    const { data, error } = await contentDb
       .from('stories')
       .select(`
         *,
@@ -21,7 +24,7 @@ export function useStories() {
             id,
             body,
             created_at,
-            users ( username, score, role )
+            author_id
           )
         )
       `)
@@ -29,9 +32,25 @@ export function useStories() {
 
     if (error) {
       setError(error.message)
-    } else {
-      setStories(data)
+      setLoading(false)
+      return
     }
+
+    const authorIds = [...new Set(
+      (data || []).flatMap(s => (s.story_sources || []).map(src => src.posts?.author_id)).filter(Boolean)
+    )]
+    const { data: authors } = authorIds.length
+      ? await identityDb.from('profiles').select('id, username, score, role').in('id', authorIds)
+      : { data: [] }
+    const authorsById = new Map((authors || []).map(a => [a.id, a]))
+
+    setStories((data || []).map(s => ({
+      ...s,
+      story_sources: (s.story_sources || []).map(src => ({
+        ...src,
+        posts: src.posts ? { ...src.posts, users: authorsById.get(src.posts.author_id) || null } : null,
+      })),
+    })))
     setLoading(false)
   }
 
